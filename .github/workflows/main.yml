@@ -7,18 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Run Johanna
+      - name: Create Success File
         run: |
-          echo "Johanna is waking up..." > success.txt
-          echo "System Status: Online" >> success.txt
-          python Johanna_brain.py
+          echo "Johanna is ONLINE at $(date)" > success.txt
 
-      - name: Save Changes
+      - name: Push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add success.txt
-          git commit -m "Johanna updated the status" || exit 0
+          git commit -m "Forced success file creation"
           git push
