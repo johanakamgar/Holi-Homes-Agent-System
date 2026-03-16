@@ -11,5 +11,14 @@ jobs:
 
       - name: Run Johanna
         run: |
-          pip install requests
+          echo "Johanna is waking up..." > success.txt
+          echo "System Status: Online" >> success.txt
           python Johanna_brain.py
+
+      - name: Save Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add success.txt
+          git commit -m "Johanna updated the status" || exit 0
+          git push
