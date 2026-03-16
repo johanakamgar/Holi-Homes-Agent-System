@@ -5,18 +5,20 @@ on:
 jobs:
   activate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create Success File
         run: |
-          echo "Johanna is ONLINE at $(date)" > success.txt
+          echo "Johanna System is Online" > success.txt
 
-      - name: Push changes
+      - name: Save Changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add success.txt
-          git commit -m "Forced success file creation"
+          git commit -m "Forced file creation" || echo "No changes to commit"
           git push
