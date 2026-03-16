@@ -20,5 +20,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add success.txt
-          git commit -m "Forced file creation" || echo "No changes to commit"
+          git commit -m "Main page file creation" || echo "No changes"
           git push
